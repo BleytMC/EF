@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001_FirstExample", "001_FirstExample\001_FirstExample.csproj", "{374332C4-0301-460E-8DA5-AF25F5938AE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "002_AppWithMigarations", "002_AppWithMigarations\002_AppWithMigarations.csproj", "{C00CE5C5-16D7-40B6-BEB0-9D293191EB2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003_OneToMany", "003_OneToMany\003_OneToMany.csproj", "{35178508-2BE0-4ACC-8E12-F2135ED43369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C00CE5C5-16D7-40B6-BEB0-9D293191EB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C00CE5C5-16D7-40B6-BEB0-9D293191EB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00CE5C5-16D7-40B6-BEB0-9D293191EB2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
