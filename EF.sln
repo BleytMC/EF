@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "002_AppWithMigarations", "0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003_OneToMany", "003_OneToMany\003_OneToMany.csproj", "{35178508-2BE0-4ACC-8E12-F2135ED43369}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "004_NavigationProperties", "004_NavigationProperties\004_NavigationProperties.csproj", "{ADA442CE-3566-4BE8-9C26-994DD837340E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "005_LazyLoadingExample", "005_LazyLoadingExample\005_LazyLoadingExample.csproj", "{5E16D786-DF3B-44AD-80A2-1EE365357138}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35178508-2BE0-4ACC-8E12-F2135ED43369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA442CE-3566-4BE8-9C26-994DD837340E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA442CE-3566-4BE8-9C26-994DD837340E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA442CE-3566-4BE8-9C26-994DD837340E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA442CE-3566-4BE8-9C26-994DD837340E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
