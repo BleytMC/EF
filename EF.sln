@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "004_NavigationProperties", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "005_LazyLoadingExample", "005_LazyLoadingExample\005_LazyLoadingExample.csproj", "{5E16D786-DF3B-44AD-80A2-1EE365357138}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "006_HW1", "006_HW1\006_HW1.csproj", "{F679DE80-8D6E-454F-8C49-3BFD8503435C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E16D786-DF3B-44AD-80A2-1EE365357138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
