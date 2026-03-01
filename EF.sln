@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "005_LazyLoadingExample", "0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "006_HW1", "006_HW1\006_HW1.csproj", "{F679DE80-8D6E-454F-8C49-3BFD8503435C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "007_HW2", "007_HW2\007_HW2.csproj", "{DB0DC336-F9C6-42FB-86E3-06C97BE4CD58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F679DE80-8D6E-454F-8C49-3BFD8503435C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB0DC336-F9C6-42FB-86E3-06C97BE4CD58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0DC336-F9C6-42FB-86E3-06C97BE4CD58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0DC336-F9C6-42FB-86E3-06C97BE4CD58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0DC336-F9C6-42FB-86E3-06C97BE4CD58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
