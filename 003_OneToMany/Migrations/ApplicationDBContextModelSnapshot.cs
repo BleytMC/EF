@@ -36,6 +36,18 @@ namespace _003_OneToMany.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "Tech"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "Food"
+                        });
                 });
 
             modelBuilder.Entity("_003_OneToMany.Product", b =>
@@ -61,6 +73,29 @@ namespace _003_OneToMany.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Name = "TV",
+                            Price = 1000
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Name = "Tablet",
+                            Price = 3000
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            Name = "Burger",
+                            Price = 3434
+                        });
                 });
 
             modelBuilder.Entity("_003_OneToMany.Product", b =>

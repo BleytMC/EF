@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace _003_OneToMany.Migrations
 {
     /// <inheritdoc />
@@ -42,6 +44,25 @@ namespace _003_OneToMany.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Tech" },
+                    { 2, "Food" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, 1, "TV", 1000 },
+                    { 2, 1, "Tablet", 3000 },
+                    { 3, 2, "Burger", 3434 }
                 });
 
             migrationBuilder.CreateIndex(
