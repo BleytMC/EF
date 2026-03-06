@@ -16,6 +16,13 @@ namespace _008_ManyToMany
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            modelBuilder.Entity<Student>().
+                HasMany(s => s.Courses)
+                .WithMany(c => c.Students);
+
+
             // 1. Сідінг курсів
             modelBuilder.Entity<Course>().HasData(
                 new Course { Id = 1, Name = "Математичний аналіз" },
