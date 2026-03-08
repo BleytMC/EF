@@ -4,12 +4,12 @@ namespace _007_HW2
 {
     public class ApplicationDbContext: DbContext
     {
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Street> Streets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "DATA SOURCE=RomanPC; DATABASE=EFProductsCategoriesDB; UID=sa; PWD=1; TrustServerCertificate=True;";
+            string connectionString = "DATA SOURCE=RomanPC; DATABASE=EFHouseStreetDB; UID=sa; PWD=1; TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
 
         }

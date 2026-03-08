@@ -21,7 +21,28 @@ namespace _007_HW2.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("_007_HW2.Category", b =>
+            modelBuilder.Entity("_007_HW2.House", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StreetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StreetId");
+
+                    b.ToTable("Houses");
+                });
+
+            modelBuilder.Entity("_007_HW2.Street", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,48 +56,23 @@ namespace _007_HW2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Streets");
                 });
 
-            modelBuilder.Entity("_007_HW2.Product", b =>
+            modelBuilder.Entity("_007_HW2.House", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("_007_HW2.Product", b =>
-                {
-                    b.HasOne("_007_HW2.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("_007_HW2.Street", "Street")
+                        .WithMany("Houses")
+                        .HasForeignKey("StreetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Street");
                 });
 
-            modelBuilder.Entity("_007_HW2.Category", b =>
+            modelBuilder.Entity("_007_HW2.Street", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Houses");
                 });
 #pragma warning restore 612, 618
         }
