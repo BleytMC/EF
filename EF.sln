@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "007_HW2", "007_HW2\007_HW2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "013_HW3", "013_HW3\013_HW3.csproj", "{4487EF5C-7FC1-42E6-B788-78BDA1031612}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "014_DapperExample", "014_DapperExample\014_DapperExample.csproj", "{340FE43B-832B-4CF4-B443-0627B64FD3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "015_DapperTwoTables", "015_DapperTwoTables\015_DapperTwoTables.csproj", "{750BD6D0-A59A-468F-9F3D-E20B169179FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{4487EF5C-7FC1-42E6-B788-78BDA1031612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4487EF5C-7FC1-42E6-B788-78BDA1031612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4487EF5C-7FC1-42E6-B788-78BDA1031612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340FE43B-832B-4CF4-B443-0627B64FD3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340FE43B-832B-4CF4-B443-0627B64FD3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340FE43B-832B-4CF4-B443-0627B64FD3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340FE43B-832B-4CF4-B443-0627B64FD3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
