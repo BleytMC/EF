@@ -10,7 +10,7 @@ namespace _009_Films
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "DATA SOURCE=403-8\\MSSQLSERVERSTEP; DATABASE=EFFilmsDB; UID=sa; PWD=1; TrustServerCertificate=True;";
+            string connectionString = "DATA SOURCE=RomanPC; DATABASE=EFFilmsDB; UID=sa; PWD=1; TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
 
         }
