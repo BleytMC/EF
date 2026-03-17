@@ -11,7 +11,7 @@ namespace _012_BookAuthors
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer(@"DATA SOURCE=403-8\MSSQLSERVERSTEP; DATABASE=EFBookAuthorsDB; UID=sa; PWD=1; TrustServerCertificate=True;");
+                .UseSqlServer(@"DATA SOURCE=RomanPC; DATABASE=EFBookAuthorsDB; UID=sa; PWD=1; TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
