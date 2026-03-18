@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "014_DapperExample", "014_Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "015_DapperTwoTables", "015_DapperTwoTables\015_DapperTwoTables.csproj", "{750BD6D0-A59A-468F-9F3D-E20B169179FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "016_Exam", "016_Exam\016_Exam.csproj", "{36A5727D-CF5D-44D5-87A1-218D135F3669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{750BD6D0-A59A-468F-9F3D-E20B169179FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A5727D-CF5D-44D5-87A1-218D135F3669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A5727D-CF5D-44D5-87A1-218D135F3669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A5727D-CF5D-44D5-87A1-218D135F3669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A5727D-CF5D-44D5-87A1-218D135F3669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
