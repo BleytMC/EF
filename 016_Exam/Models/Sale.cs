@@ -11,6 +11,6 @@
 
         public int Discount { get; set; }
 
-        public List<Disc> Discs { get; set; } = new();
+        public virtual List<Disc> Discs { get; set; } = new();
     }
 }

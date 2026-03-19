@@ -7,6 +7,7 @@ using ApplicationDbContext db = new ApplicationDbContext();
 User? currentUser = null;
 
 bool running = true;
+int option;
 
 do
 {
@@ -19,11 +20,75 @@ do
     if(currentUser == null) Console.WriteLine("3 - Log in");
     Console.WriteLine(new string('-', 50));
     Console.Write("Choose option: ");
-    int option = Convert.ToInt32(Console.ReadLine());
+    option = Convert.ToInt32(Console.ReadLine());
     switch (option)
     {
         case 0:
             running = false;
+            break;
+        case 1:
+            Console.Clear();
+            Console.WriteLine($"{"Id",-5}{"Name",-20}{"Ganre",-15}{"Author",-30}{"Publisher",-20}{"Price",-8}{"Amount",-8}");
+            Console.WriteLine(new string('-', 106));
+            if(db.Discs.Count() == 0)
+            {
+                Console.WriteLine("No discs available");
+            }
+            else
+            {
+                Disc[] discs = db.Discs.Where(d => d.Amount > 0).ToArray();
+                for(int i = 0; i < discs.Length; i++)
+                {
+                    Console.WriteLine($"{i,-5}{discs[i].Name,-20}{discs[i].Ganre.Name,-15}{discs[i].Author.Name,-15}{discs[i].Author.Surname,-15}{discs[i].Publisher.Name,-20}{discs[i].Price,-8}{discs[i].Amount,-8}");
+                }
+                Console.WriteLine(new string('-', 106));
+                Console.WriteLine("1 - Add to cart");
+                Console.WriteLine(new string('-', 106));
+                Console.Write("Choose option: ");
+                option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        if (currentUser == null)
+                        {
+                            Console.Write("\nTo add discs your cart you have to log in");
+                            Console.ReadLine();
+                            break;
+                        }
+                        Console.Write("\nEnter disc id: ");
+                        int discToShelveId = Convert.ToInt32(Console.ReadLine());
+                        if(discToShelveId < 0 || discToShelveId >= discs.Length)
+                        {
+                            Console.WriteLine("\nId is out of range");
+                            Console.ReadLine();
+                            break;
+                        }
+                        else
+                        {
+                            Console.Write("Enter amount: ");
+                            int discToShelveAmount = Convert.ToInt32(Console.ReadLine());
+                            if(discToShelveAmount < 0 || discToShelveAmount > discs[discToShelveId].Amount)
+                            {
+                                Console.WriteLine("\nAmount is not avaliable");
+                                Console.ReadLine();
+                                break;
+                            }
+                            else
+                            {                                
+                                discs[discToShelveId].Amount -= discToShelveAmount;
+                                discs[discToShelveId].Shelved += discToShelveAmount;
+                                ShelvedDiscs shelvedDiscs = new() { User = currentUser, Amount = discToShelveAmount, Disc = discs[discToShelveId] };
+                                db.ShelvedDiscs.Add(shelvedDiscs);
+
+                                db.SaveChanges();
+
+                                Console.WriteLine("\nDisc was added to your car successfully");
+                                Console.ReadLine();
+                            }
+                        }                        
+                        break;
+                }
+            }
             break;
         case 2:
             if(currentUser == null)
@@ -34,8 +99,8 @@ do
             }
             Console.Clear();
             Console.WriteLine($"{"Id",-5}{"Name",-15}{"Ganre",-10}{"Author",-30}{"Publisher",-15}{"Price",-8}{"Amount",-8}{"Final Price",-15}");
-            Console.WriteLine(new string('-', 106);
-            if(currentUser.Purchases.Count == 0) Console.WriteLine("Your cart is empty");
+            Console.WriteLine(new string('-', 106));
+            if(currentUser.ShelvedDiscs.Count == 0) Console.WriteLine("Your cart is empty");
             else
             {
                 ShelvedDiscs[] shelvedDiscs = currentUser.ShelvedDiscs.ToArray();
@@ -60,7 +125,7 @@ do
                 Console.Write("Enter your password: ");
                 string password = Console.ReadLine();
 
-                User? userToEnter = db.Users.Where(u => u.Login == login && u.Password == password).Include(u => u.ShelvedDiscs).FirstOrDefault();
+                User? userToEnter = db.Users.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
                 if(userToEnter == null) Console.WriteLine("\nCannot log into account");
                 else
                 {
@@ -83,7 +148,7 @@ do
                 else if (login.Length > 25) Console.WriteLine("\nYour login is too long");
                 else
                 {
-                    User? userToCreate = db.Users.Where(u => u.Login == login).Include(u => u.ShelvedDiscs).FirstOrDefault();
+                    User? userToCreate = db.Users.Where(u => u.Login == login).FirstOrDefault();
                     if(userToCreate != null) Console.WriteLine("\nUser with this login already exists");
                     else
                     {

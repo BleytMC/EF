@@ -7,6 +7,6 @@
         public string Name { get; set; }
         public string Surname { get; set; }
 
-        public List<Disc> Discs { get; set; } = new();
+        public virtual List<Disc> Discs { get; set; } = new();
     }
 }

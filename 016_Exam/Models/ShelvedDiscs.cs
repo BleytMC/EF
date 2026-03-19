@@ -7,8 +7,8 @@
         public int UserId { get; set; }
         public int DiscId { get; set; }
 
-        public User User { get; set; }
-        public Disc Disc { get; set; }
+        public virtual User User { get; set; }
+        public virtual Disc Disc { get; set; }
 
         public int Amount { get; set; }
     }

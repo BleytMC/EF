@@ -13,9 +13,9 @@
         public int AuthorId { get; set; }
         public int GanreId { get; set; }
 
-        public Publisher Publisher { get; set; }
-        public Author Author { get; set; }
-        public Ganre Ganre { get; set; }
+        public virtual Publisher Publisher { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Ganre Ganre { get; set; }
 
         public DateOnly ReleaseDate { get; set; }
 
@@ -25,8 +25,8 @@
         public int Sold { get; set; }
         public int Shelved { get; set; }
 
-        public List<Sale> Sales { get; set; } = new();
-        public List<ShelvedDiscs> ShelvedDiscs { get; set; } = new();
-        public List<Purchase> Purchases { get; set; } = new();
+        public virtual List<Sale> Sales { get; set; } = new();
+        public virtual List<ShelvedDiscs> ShelvedDiscs { get; set; } = new();
+        public virtual List<Purchase> Purchases { get; set; } = new();
     }
 }
