@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace _016_Exam.Migrations
 {
     /// <inheritdoc />
@@ -39,7 +41,7 @@ namespace _016_Exam.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publisher",
+                name: "Publishers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -48,11 +50,11 @@ namespace _016_Exam.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Publisher", x => x.Id);
+                    table.PrimaryKey("PK_Publishers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sale",
+                name: "Sales",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -64,7 +66,7 @@ namespace _016_Exam.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sale", x => x.Id);
+                    table.PrimaryKey("PK_Sales", x => x.Id);
                     table.CheckConstraint("Discount", "Discount > 0 AND Discount < 100");
                 });
 
@@ -75,7 +77,8 @@ namespace _016_Exam.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
+                    PermissionLevel = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
                 },
                 constraints: table =>
                 {
@@ -121,9 +124,9 @@ namespace _016_Exam.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Discs_Publisher_PublisherId",
+                        name: "FK_Discs_Publishers_PublisherId",
                         column: x => x.PublisherId,
-                        principalTable: "Publisher",
+                        principalTable: "Publishers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -145,9 +148,9 @@ namespace _016_Exam.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DiscSale_Sale_SalesId",
+                        name: "FK_DiscSale_Sales_SalesId",
                         column: x => x.SalesId,
-                        principalTable: "Sale",
+                        principalTable: "Sales",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -212,6 +215,63 @@ namespace _016_Exam.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Authors",
+                columns: new[] { "Id", "Name", "Surname" },
+                values: new object[,]
+                {
+                    { 1, "John", "Smith" },
+                    { 2, "Emma", "Johnson" },
+                    { 3, "Michael", "Brown" },
+                    { 4, "Olivia", "Davis" },
+                    { 5, "William", "Miller" },
+                    { 6, "Sophia", "Wilson" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ganres",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Rock" },
+                    { 2, "Pop" },
+                    { 3, "Jazz" },
+                    { 4, "Hip-Hop" },
+                    { 5, "Classical" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Publishers",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Universal Music" },
+                    { 2, "Sony Music" },
+                    { 3, "Warner Music" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Discs",
+                columns: new[] { "Id", "Amount", "AuthorId", "Cost", "GanreId", "Name", "Price", "PublisherId", "ReleaseDate", "Shelved", "Sold", "SongsCount" },
+                values: new object[,]
+                {
+                    { 1, 50, 1, 5.2000000000000002, 1, "Rock Legends", 15.9, 1, new DateOnly(2010, 5, 12), 0, 0, 12 },
+                    { 2, 80, 2, 4.0, 2, "Pop Hits", 12.5, 2, new DateOnly(2015, 3, 8), 0, 0, 10 },
+                    { 3, 40, 3, 6.5, 3, "Jazz Night", 18.0, 3, new DateOnly(2008, 11, 21), 0, 0, 8 },
+                    { 4, 70, 4, 3.7999999999999998, 4, "Hip-Hop Beats", 11.0, 2, new DateOnly(2020, 7, 15), 0, 0, 14 },
+                    { 5, 30, 5, 7.5, 5, "Classic Collection", 20.0, 3, new DateOnly(2000, 1, 1), 0, 0, 20 },
+                    { 6, 55, 6, 5.0, 1, "Rock Arena", 14.0, 1, new DateOnly(2012, 6, 18), 0, 0, 11 },
+                    { 7, 75, 1, 4.2000000000000002, 2, "Pop Dreams", 13.0, 2, new DateOnly(2016, 4, 10), 0, 0, 13 },
+                    { 8, 35, 2, 6.0, 3, "Smooth Jazz", 17.5, 3, new DateOnly(2009, 2, 25), 0, 0, 7 },
+                    { 9, 90, 3, 3.5, 4, "Street Beats", 10.5, 1, new DateOnly(2021, 8, 5), 0, 0, 15 },
+                    { 10, 20, 4, 8.0, 5, "Symphony Best", 22.0, 2, new DateOnly(1995, 12, 12), 0, 0, 25 },
+                    { 11, 45, 5, 5.0999999999999996, 1, "Rock Energy", 15.0, 3, new DateOnly(2011, 3, 3), 0, 0, 12 },
+                    { 12, 85, 6, 4.4000000000000004, 2, "Pop Star", 13.9, 1, new DateOnly(2017, 9, 9), 0, 0, 11 },
+                    { 13, 25, 1, 6.7999999999999998, 3, "Jazz Classics", 19.0, 2, new DateOnly(2007, 6, 14), 0, 0, 9 },
+                    { 14, 95, 2, 3.8999999999999999, 4, "Rap Kings", 12.0, 3, new DateOnly(2022, 2, 2), 0, 0, 16 },
+                    { 15, 15, 3, 7.7999999999999998, 5, "Orchestra Gold", 21.5, 1, new DateOnly(1998, 10, 30), 0, 0, 18 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Discs_AuthorId",
                 table: "Discs",
@@ -272,7 +332,7 @@ namespace _016_Exam.Migrations
                 name: "ShelvedDiscs");
 
             migrationBuilder.DropTable(
-                name: "Sale");
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "Discs");
@@ -287,7 +347,7 @@ namespace _016_Exam.Migrations
                 name: "Ganres");
 
             migrationBuilder.DropTable(
-                name: "Publisher");
+                name: "Publishers");
         }
     }
 }

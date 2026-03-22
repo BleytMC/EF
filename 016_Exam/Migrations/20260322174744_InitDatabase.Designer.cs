@@ -12,7 +12,7 @@ using _016_Exam;
 namespace _016_Exam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260318162224_InitDatabase")]
+    [Migration("20260322174744_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -21,6 +21,9 @@ namespace _016_Exam.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.13")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -59,6 +62,44 @@ namespace _016_Exam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "John",
+                            Surname = "Smith"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Emma",
+                            Surname = "Johnson"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Michael",
+                            Surname = "Brown"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Olivia",
+                            Surname = "Davis"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "William",
+                            Surname = "Miller"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Sophia",
+                            Surname = "Wilson"
+                        });
                 });
 
             modelBuilder.Entity("_016_Exam.Models.Disc", b =>
@@ -123,6 +164,233 @@ namespace _016_Exam.Migrations
 
                             t.HasCheckConstraint("Sold", "Sold >= 0");
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 50,
+                            AuthorId = 1,
+                            Cost = 5.2000000000000002,
+                            GanreId = 1,
+                            Name = "Rock Legends",
+                            Price = 15.9,
+                            PublisherId = 1,
+                            ReleaseDate = new DateOnly(2010, 5, 12),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 80,
+                            AuthorId = 2,
+                            Cost = 4.0,
+                            GanreId = 2,
+                            Name = "Pop Hits",
+                            Price = 12.5,
+                            PublisherId = 2,
+                            ReleaseDate = new DateOnly(2015, 3, 8),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 10
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 40,
+                            AuthorId = 3,
+                            Cost = 6.5,
+                            GanreId = 3,
+                            Name = "Jazz Night",
+                            Price = 18.0,
+                            PublisherId = 3,
+                            ReleaseDate = new DateOnly(2008, 11, 21),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 8
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 70,
+                            AuthorId = 4,
+                            Cost = 3.7999999999999998,
+                            GanreId = 4,
+                            Name = "Hip-Hop Beats",
+                            Price = 11.0,
+                            PublisherId = 2,
+                            ReleaseDate = new DateOnly(2020, 7, 15),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 14
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 30,
+                            AuthorId = 5,
+                            Cost = 7.5,
+                            GanreId = 5,
+                            Name = "Classic Collection",
+                            Price = 20.0,
+                            PublisherId = 3,
+                            ReleaseDate = new DateOnly(2000, 1, 1),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 20
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 55,
+                            AuthorId = 6,
+                            Cost = 5.0,
+                            GanreId = 1,
+                            Name = "Rock Arena",
+                            Price = 14.0,
+                            PublisherId = 1,
+                            ReleaseDate = new DateOnly(2012, 6, 18),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 11
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 75,
+                            AuthorId = 1,
+                            Cost = 4.2000000000000002,
+                            GanreId = 2,
+                            Name = "Pop Dreams",
+                            Price = 13.0,
+                            PublisherId = 2,
+                            ReleaseDate = new DateOnly(2016, 4, 10),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 13
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 35,
+                            AuthorId = 2,
+                            Cost = 6.0,
+                            GanreId = 3,
+                            Name = "Smooth Jazz",
+                            Price = 17.5,
+                            PublisherId = 3,
+                            ReleaseDate = new DateOnly(2009, 2, 25),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 7
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 90,
+                            AuthorId = 3,
+                            Cost = 3.5,
+                            GanreId = 4,
+                            Name = "Street Beats",
+                            Price = 10.5,
+                            PublisherId = 1,
+                            ReleaseDate = new DateOnly(2021, 8, 5),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 15
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 20,
+                            AuthorId = 4,
+                            Cost = 8.0,
+                            GanreId = 5,
+                            Name = "Symphony Best",
+                            Price = 22.0,
+                            PublisherId = 2,
+                            ReleaseDate = new DateOnly(1995, 12, 12),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 25
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Amount = 45,
+                            AuthorId = 5,
+                            Cost = 5.0999999999999996,
+                            GanreId = 1,
+                            Name = "Rock Energy",
+                            Price = 15.0,
+                            PublisherId = 3,
+                            ReleaseDate = new DateOnly(2011, 3, 3),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 12
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Amount = 85,
+                            AuthorId = 6,
+                            Cost = 4.4000000000000004,
+                            GanreId = 2,
+                            Name = "Pop Star",
+                            Price = 13.9,
+                            PublisherId = 1,
+                            ReleaseDate = new DateOnly(2017, 9, 9),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 11
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Amount = 25,
+                            AuthorId = 1,
+                            Cost = 6.7999999999999998,
+                            GanreId = 3,
+                            Name = "Jazz Classics",
+                            Price = 19.0,
+                            PublisherId = 2,
+                            ReleaseDate = new DateOnly(2007, 6, 14),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 9
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Amount = 95,
+                            AuthorId = 2,
+                            Cost = 3.8999999999999999,
+                            GanreId = 4,
+                            Name = "Rap Kings",
+                            Price = 12.0,
+                            PublisherId = 3,
+                            ReleaseDate = new DateOnly(2022, 2, 2),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 16
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Amount = 15,
+                            AuthorId = 3,
+                            Cost = 7.7999999999999998,
+                            GanreId = 5,
+                            Name = "Orchestra Gold",
+                            Price = 21.5,
+                            PublisherId = 1,
+                            ReleaseDate = new DateOnly(1998, 10, 30),
+                            Shelved = 0,
+                            Sold = 0,
+                            SongsCount = 18
+                        });
                 });
 
             modelBuilder.Entity("_016_Exam.Models.Ganre", b =>
@@ -140,6 +408,33 @@ namespace _016_Exam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ganres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Rock"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Pop"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Jazz"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Hip-Hop"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Classical"
+                        });
                 });
 
             modelBuilder.Entity("_016_Exam.Models.Publisher", b =>
@@ -156,7 +451,24 @@ namespace _016_Exam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publishers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Universal Music"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Sony Music"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Warner Music"
+                        });
                 });
 
             modelBuilder.Entity("_016_Exam.Models.Purchase", b =>
@@ -222,7 +534,7 @@ namespace _016_Exam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sale", t =>
+                    b.ToTable("Sales", t =>
                         {
                             t.HasCheckConstraint("Discount", "Discount > 0 AND Discount < 100");
                         });
@@ -274,6 +586,11 @@ namespace _016_Exam.Migrations
                         .IsRequired()
                         .HasMaxLength(24)
                         .HasColumnType("nvarchar(24)");
+
+                    b.Property<int>("PermissionLevel")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 

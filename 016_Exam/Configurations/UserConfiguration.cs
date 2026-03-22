@@ -11,6 +11,7 @@ namespace _016_Exam.Configurations
             builder.HasIndex(u => u.Login).IsUnique();
 
             builder.Property(u => u.Password).HasMaxLength(24);
+            builder.Property(u => u.PermissionLevel).HasDefaultValue(0);
         }
     }
 }

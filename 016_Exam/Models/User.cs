@@ -7,6 +7,8 @@
         public string Login { get; set; }
         public string Password { get; set; }
 
+        public int PermissionLevel { get; set; }
+
         public virtual List<ShelvedDiscs> ShelvedDiscs { get; set; } = new();
         public virtual List<Purchase> Purchases { get; set; } = new();
     }
