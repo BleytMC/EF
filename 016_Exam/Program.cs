@@ -39,7 +39,15 @@ do
                 Disc[] discs = db.Discs.Where(d => d.Amount > 0).ToArray();
                 for(int i = 0; i < discs.Length; i++)
                 {
-                    Console.WriteLine($"{i,-5}{discs[i].Name,-20}{discs[i].Ganre.Name,-15}{discs[i].Author.Name,-10}{discs[i].Author.Surname,-10}{discs[i].Publisher.Name,-20}{discs[i].ReleaseDate,-15}{discs[i].SongsCount,-8}{discs[i].Price,-8}{discs[i].Amount,-8}");
+                    Console.Write($"{i,-5}{discs[i].Name,-20}{discs[i].Ganre.Name,-15}{discs[i].Author.Name,-10}{discs[i].Author.Surname,-10}{discs[i].Publisher.Name,-20}{discs[i].ReleaseDate,-15}{discs[i].SongsCount,-8}");
+                    if (discs[i].Sales.Count() == 0) Console.Write($"{discs[i].Price,-8}");
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"{discs[i].Price / 100 * (100 - discs[i].Sales.Max(s => s.Discount)),-8}");
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine($"{discs[i].Amount,-8}");
                 }
                 Console.WriteLine(new string('-', 117));
                 Console.WriteLine("1 - Add to cart");
@@ -47,6 +55,7 @@ do
                 {
                     Console.WriteLine("2 - Add disc");
                     Console.WriteLine("3 - Remove disc");
+                    Console.WriteLine("4 - Edit sales");
                 }
                 Console.WriteLine(new string('-', 117));
                 Console.Write("Choose option: ");
@@ -257,6 +266,98 @@ do
                             }
                         }
                         break;
+                    case 4:
+                        if (currentUser == null || currentUser.PermissionLevel == 0)
+                        {
+                            Console.WriteLine("\nYou don't have permission");
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"{"id",-5}{"Name",-20}{"Discount",-10}{"Start date",-12}{"End date",-12}");
+                            Console.WriteLine(new string('-',60));
+                            Sale[] allSales = db.Sales.ToArray();
+                            if(allSales.Length == 0) Console.WriteLine("No sales are avaliable");
+                            else
+                            {
+                                for(int i = 0; i < allSales.Length; i++)
+                                {
+                                    Sale s = allSales[i];
+                                    Console.WriteLine($"{i,-5}{s.Name,-20}{s.Discount,-10}{s.StartDate,-12}{s.EndDate,-12}");
+                                }
+                            }
+                            Console.WriteLine(new string('-', 60));
+                            Console.WriteLine("1 - Add new sale");
+                            Console.WriteLine("2 - Remove sale");
+                            Console.WriteLine(new string('-', 60));
+                            Console.Write("Choose option: ");
+                            option = Convert.ToInt32(Console.ReadLine());
+                            switch (option)
+                            {
+                                case 1:
+                                    Console.Clear();
+                                    Console.Write("Enter sale name: ");
+                                    string newSaleName = Console.ReadLine();
+                                    Console.Write("Enter discount: ");
+                                    int newSaleDiscount = Convert.ToInt32(Console.ReadLine());
+
+                                    DateTime dt;
+                                    Console.Write("Enter start date: ");
+                                    dt = Convert.ToDateTime(Console.ReadLine());
+                                    DateOnly newSaleStartDate = new DateOnly(dt.Year, dt.Month, dt.Day);
+                                    Console.Write("Enter end date: ");
+                                    dt = Convert.ToDateTime(Console.ReadLine());
+                                    DateOnly newSaleEndDate = new DateOnly(dt.Year, dt.Month, dt.Day);
+
+                                    Sale newSale = new Sale() { Name = newSaleName, Discount = newSaleDiscount, StartDate = newSaleStartDate, EndDate = newSaleEndDate };
+                                    db.Sales.Add(newSale);
+                                    db.SaveChanges();
+
+                                    Console.Clear();
+
+                                    Console.WriteLine($"{"Id",-5}{"Name",-20}{"Ganre",-15}{"Author",-20}{"Publisher",-20}{"Release Date",-15}{"Songs",-8}{"Price",-8}{"Amount",-8}");
+                                    Console.WriteLine(new string('-', 117));
+                                    Disc[] allDiscs = db.Discs.ToArray();
+                                    for (int i = 0; i < db.Discs.Count(); i++)
+                                    {
+                                        Console.WriteLine($"{i + 1,-5}{allDiscs[i].Name,-20}{allDiscs[i].Ganre.Name,-15}{allDiscs[i].Author.Name,-10}{allDiscs[i].Author.Surname,-10}{allDiscs[i].Publisher.Name,-20}{allDiscs[i].ReleaseDate,-15}{allDiscs[i].SongsCount,-8}{allDiscs[i].Price,-8}{allDiscs[i].Amount,-8}");
+                                    }
+                                    Console.WriteLine(new string('-', 117));
+
+                                    int discId = -1;
+                                    while(discId != 0)
+                                    {
+                                        Console.Write("Enter disc id: ");
+                                        discId = Convert.ToInt32(Console.ReadLine());
+                                        if (discId < 0 || discId > allDiscs.Length)
+                                        {
+                                            Console.WriteLine("Invalid id");
+                                            Console.ReadLine();
+                                        }
+                                        else
+                                        {
+                                            if(discId != 0) newSale.Discs.Add(allDiscs[discId - 1]);
+                                        }
+                                    }
+                                    db.SaveChanges();
+                                    Console.Clear();
+                                    Console.WriteLine("Sale was added successfully");
+                                    Console.ReadLine();
+                                    break;
+                                case 2:
+                                    Console.Write("\nEnter sale id: ");
+                                    int saleToRemoveId = Convert.ToInt32(Console.ReadLine());
+                                    Sale saleToRemove = allSales[saleToRemoveId];
+                                    db.Sales.Remove(saleToRemove);
+                                    db.SaveChanges();
+                                    Console.Clear();
+                                    Console.WriteLine("Sale was removed successfully");
+                                    Console.ReadLine();
+                                    break;
+                            }
+                        }
+                        break;
                 }
             }
             break;
@@ -276,11 +377,23 @@ do
             {
                 for(int i = 0; i < shelvedDiscs.Length; i++)
                 {
-                    Console.WriteLine($"{i,-5}{shelvedDiscs[i].Disc.Name,-20}{shelvedDiscs[i].Disc.Ganre.Name,-15}{shelvedDiscs[i].Disc.Author.Name,-10}{shelvedDiscs[i].Disc.Author.Surname,-10}{shelvedDiscs[i].Disc.Publisher.Name,-20}{shelvedDiscs[i].Disc.ReleaseDate,-15}{shelvedDiscs[i].Disc.SongsCount,-8}{shelvedDiscs[i].Disc.Price,-8}{shelvedDiscs[i].Amount,-8}");
+                    Console.Write($"{i,-5}{shelvedDiscs[i].Disc.Name,-20}{shelvedDiscs[i].Disc.Ganre.Name,-15}{shelvedDiscs[i].Disc.Author.Name,-10}{shelvedDiscs[i].Disc.Author.Surname,-10}{shelvedDiscs[i].Disc.Publisher.Name,-20}{shelvedDiscs[i].Disc.ReleaseDate,-15}{shelvedDiscs[i].Disc.SongsCount,-8}");
+                    if (shelvedDiscs[i].Disc.Sales.Count() == 0)
+                    {
+                        Console.Write($"{shelvedDiscs[i].Disc.Price,-8}");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"{shelvedDiscs[i].Disc.Price / 100 * (100 - shelvedDiscs[i].Disc.Sales.Max(s => s.Discount)),-8}");
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine($"{shelvedDiscs[i].Amount,-8}");
                 }
             }
             Console.WriteLine(new string('-', 117));
             Console.WriteLine("1 - Remove disc from your cart");
+            Console.WriteLine("2 - Buy cart");
             Console.WriteLine(new string('-', 117));
             option = Convert.ToInt32(Console.ReadLine());
             switch (option)
@@ -314,9 +427,21 @@ do
                         }
                     }
                     break;
+                case 2:
+                    foreach(ShelvedDiscs sd in shelvedDiscs)
+                    {
+                        sd.Disc.Sold += sd.Amount;
+                        double price = sd.Disc.Price / 100 * (100 - sd.Disc.Sales.Max(s => s.Discount));
+                        Purchase purchase = new Purchase() { Disc = sd.Disc, Amount = sd.Amount, PriceForOne = price, FinalPrice = price * sd.Amount, User = currentUser };
+                        db.Purchases.Add(purchase);                        
+                    }
+                    db.SaveChanges();
+                    break;
             }
             break;
         case 3:
+            break;
+        case 4:
             if (currentUser != null) break;
             Console.Clear();
             Console.Write("Do you have an account(Yes/No)?\t");
