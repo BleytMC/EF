@@ -595,6 +595,15 @@ namespace _016_Exam.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Login = "a",
+                            Password = "1",
+                            PermissionLevel = 1
+                        });
                 });
 
             modelBuilder.Entity("DiscSale", b =>

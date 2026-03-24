@@ -17,7 +17,8 @@ do
     Console.WriteLine(new string('-', 50));
     Console.WriteLine("1 - View all discs");
     Console.WriteLine("2 - View your cart");
-    if(currentUser == null) Console.WriteLine("3 - Log in");
+    Console.WriteLine("3 - View your purchase history");
+    if(currentUser == null) Console.WriteLine("4 - Log in");
     Console.WriteLine(new string('-', 50));
     Console.Write("Choose option: ");
     option = Convert.ToInt32(Console.ReadLine());
@@ -431,21 +432,42 @@ do
                     foreach(ShelvedDiscs sd in shelvedDiscs)
                     {
                         sd.Disc.Sold += sd.Amount;
-                        double price = sd.Disc.Price / 100 * (100 - sd.Disc.Sales.Max(s => s.Discount));
+                        double price;
+                        if (sd.Disc.Sales.Count() == 0) price = sd.Disc.Price;
+                        else price = sd.Disc.Price / 100 * (100 - sd.Disc.Sales.Max(s => s.Discount));
                         Purchase purchase = new Purchase() { Disc = sd.Disc, Amount = sd.Amount, PriceForOne = price, FinalPrice = price * sd.Amount, User = currentUser };
-                        db.Purchases.Add(purchase);                        
+                        db.Purchases.Add(purchase);
+                        db.ShelvedDiscs.Remove(sd);
                     }
                     db.SaveChanges();
                     break;
             }
             break;
         case 3:
+            if (currentUser == null)
+            {
+                Console.Write("\nTo view your purchase history you have to log in");
+                Console.ReadLine();
+                break;
+            }
+            Console.Clear();
+            Console.WriteLine($"{"Id",-5}{"Name",-20}{"Ganre",-15}{"Author",-20}{"Publisher",-20}{"Release Date",-15}{"Songs",-8}{"Price",-11}{"Amount"}");
+            Console.WriteLine(new string('-', 120));            
+            Purchase[] purchases = currentUser.Purchases.ToArray();
+            if(purchases.Length == 0) Console.WriteLine("You haven't made any purchases yet");
+            else for(int i = 0; i < purchases.Length; i++)
+            {
+                Purchase p = purchases[i];
+                Console.WriteLine($"{i,-5}{p.Disc.Name,-20}{p.Disc.Ganre.Name,-15}{p.Disc.Author.Name,-10}{p.Disc.Author.Surname,-10}{p.Disc.Publisher.Name,-20}{p.Disc.ReleaseDate,-15}{p.Disc.SongsCount,-8}{p.PriceForOne,-5}|{p.FinalPrice,-5}{p.Amount}");
+            }
+            Console.WriteLine(new string('-', 120));
+            Console.ReadLine();
             break;
         case 4:
             if (currentUser != null) break;
             Console.Clear();
             Console.Write("Do you have an account(Yes/No)?\t");
-            string answer =Console.ReadLine();
+            string answer = Console.ReadLine();
             if(answer.ToLower() == "yes")
             {
                 Console.Clear();

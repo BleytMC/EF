@@ -31,6 +31,10 @@ namespace _016_Exam
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new PurchaseConfiguration());
 
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 1, Login = "a", Password = "1", PermissionLevel = 1}
+            );
+
             modelBuilder.Entity<Ganre>().HasData(
                 new Ganre { Id = 1, Name = "Rock" },
                 new Ganre { Id = 2, Name = "Pop" },

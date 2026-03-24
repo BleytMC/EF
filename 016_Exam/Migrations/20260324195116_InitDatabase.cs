@@ -251,6 +251,11 @@ namespace _016_Exam.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Login", "Password", "PermissionLevel" },
+                values: new object[] { 1, "a", "1", 1 });
+
+            migrationBuilder.InsertData(
                 table: "Discs",
                 columns: new[] { "Id", "Amount", "AuthorId", "Cost", "GanreId", "Name", "Price", "PublisherId", "ReleaseDate", "Shelved", "Sold", "SongsCount" },
                 values: new object[,]
