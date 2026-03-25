@@ -12,7 +12,7 @@ using _016_Exam;
 namespace _016_Exam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260324195116_InitDatabase")]
+    [Migration("20260325151245_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />

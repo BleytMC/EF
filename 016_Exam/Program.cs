@@ -41,11 +41,11 @@ do
                 for(int i = 0; i < discs.Length; i++)
                 {
                     Console.Write($"{i,-5}{discs[i].Name,-20}{discs[i].Ganre.Name,-15}{discs[i].Author.Name,-10}{discs[i].Author.Surname,-10}{discs[i].Publisher.Name,-20}{discs[i].ReleaseDate,-15}{discs[i].SongsCount,-8}");
-                    if (discs[i].Sales.Count() == 0) Console.Write($"{discs[i].Price,-8}");
+                    if (discs[i].Sales.Count() == 0) Console.Write($"{discs[i].Price.ToString("F2"),-8}");
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($"{discs[i].Price / 100 * (100 - discs[i].Sales.Max(s => s.Discount)),-8}");
+                        Console.Write($"{(discs[i].Price / 100 * (100 - discs[i].Sales.Max(s => s.Discount))).ToString("F2"),-8}");
                         Console.ResetColor();
                     }
                     Console.WriteLine($"{discs[i].Amount,-8}");
@@ -246,7 +246,7 @@ do
                             Disc[] allDiscs = db.Discs.ToArray();
                             for(int i = 0;i < db.Discs.Count(); i++)
                             {
-                                Console.WriteLine($"{i,-5}{allDiscs[i].Name,-20}{allDiscs[i].Ganre.Name,-15}{allDiscs[i].Author.Name,-10}{allDiscs[i].Author.Surname,-10}{allDiscs[i].Publisher.Name,-20}{allDiscs[i].ReleaseDate,-15}{allDiscs[i].SongsCount,-8}{allDiscs[i].Price,-8}{allDiscs[i].Amount,-8}");
+                                Console.WriteLine($"{i,-5}{allDiscs[i].Name,-20}{allDiscs[i].Ganre.Name,-15}{allDiscs[i].Author.Name,-10}{allDiscs[i].Author.Surname,-10}{allDiscs[i].Publisher.Name,-20}{allDiscs[i].ReleaseDate,-15}{allDiscs[i].SongsCount,-8}{allDiscs[i].Price.ToString("F2"),-8}{allDiscs[i].Amount,-8}");
                             }
                             Console.WriteLine(new string('-', 117));
                             Console.Write("Enter disc id: ");
@@ -322,7 +322,7 @@ do
                                     Disc[] allDiscs = db.Discs.ToArray();
                                     for (int i = 0; i < db.Discs.Count(); i++)
                                     {
-                                        Console.WriteLine($"{i + 1,-5}{allDiscs[i].Name,-20}{allDiscs[i].Ganre.Name,-15}{allDiscs[i].Author.Name,-10}{allDiscs[i].Author.Surname,-10}{allDiscs[i].Publisher.Name,-20}{allDiscs[i].ReleaseDate,-15}{allDiscs[i].SongsCount,-8}{allDiscs[i].Price,-8}{allDiscs[i].Amount,-8}");
+                                        Console.WriteLine($"{i + 1,-5}{allDiscs[i].Name,-20}{allDiscs[i].Ganre.Name,-15}{allDiscs[i].Author.Name,-10}{allDiscs[i].Author.Surname,-10}{allDiscs[i].Publisher.Name,-20}{allDiscs[i].ReleaseDate,-15}{allDiscs[i].SongsCount,-8}{allDiscs[i].Price.ToString("F2"),-8}{allDiscs[i].Amount,-8}");
                                     }
                                     Console.WriteLine(new string('-', 117));
 
@@ -381,12 +381,12 @@ do
                     Console.Write($"{i,-5}{shelvedDiscs[i].Disc.Name,-20}{shelvedDiscs[i].Disc.Ganre.Name,-15}{shelvedDiscs[i].Disc.Author.Name,-10}{shelvedDiscs[i].Disc.Author.Surname,-10}{shelvedDiscs[i].Disc.Publisher.Name,-20}{shelvedDiscs[i].Disc.ReleaseDate,-15}{shelvedDiscs[i].Disc.SongsCount,-8}");
                     if (shelvedDiscs[i].Disc.Sales.Count() == 0)
                     {
-                        Console.Write($"{shelvedDiscs[i].Disc.Price,-8}");
+                        Console.Write($"{shelvedDiscs[i].Disc.Price.ToString("F2"),-8}");
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($"{shelvedDiscs[i].Disc.Price / 100 * (100 - shelvedDiscs[i].Disc.Sales.Max(s => s.Discount)),-8}");
+                        Console.Write($"{(shelvedDiscs[i].Disc.Price / 100 * (100 - shelvedDiscs[i].Disc.Sales.Max(s => s.Discount))).ToString("F2"),-8}");
                         Console.ResetColor();
                     }
                     Console.WriteLine($"{shelvedDiscs[i].Amount,-8}");
@@ -451,14 +451,14 @@ do
                 break;
             }
             Console.Clear();
-            Console.WriteLine($"{"Id",-5}{"Name",-20}{"Ganre",-15}{"Author",-20}{"Publisher",-20}{"Release Date",-15}{"Songs",-8}{"Price",-11}{"Amount"}");
+            Console.WriteLine($"{"Id",-5}{"Name",-20}{"Ganre",-12}{"Author",-20}{"Publisher",-20}{"Release Date",-15}{"Songs",-8}{"Price",-14}{"Amount"}");
             Console.WriteLine(new string('-', 120));            
             Purchase[] purchases = currentUser.Purchases.ToArray();
             if(purchases.Length == 0) Console.WriteLine("You haven't made any purchases yet");
             else for(int i = 0; i < purchases.Length; i++)
             {
                 Purchase p = purchases[i];
-                Console.WriteLine($"{i,-5}{p.Disc.Name,-20}{p.Disc.Ganre.Name,-15}{p.Disc.Author.Name,-10}{p.Disc.Author.Surname,-10}{p.Disc.Publisher.Name,-20}{p.Disc.ReleaseDate,-15}{p.Disc.SongsCount,-8}{p.PriceForOne,-5}|{p.FinalPrice,-5}{p.Amount}");
+                Console.WriteLine($"{i,-5}{p.Disc.Name,-20}{p.Disc.Ganre.Name,-12}{p.Disc.Author.Name,-10}{p.Disc.Author.Surname,-10}{p.Disc.Publisher.Name,-20}{p.Disc.ReleaseDate,-15}{p.Disc.SongsCount,-8}{p.PriceForOne.ToString("F2"),-6}|{p.FinalPrice.ToString("F2"),-7}{p.Amount}");
             }
             Console.WriteLine(new string('-', 120));
             Console.ReadLine();

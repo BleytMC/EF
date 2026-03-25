@@ -17,8 +17,8 @@ namespace _016_Exam
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //string connectionString = "DATA SOURCE=403-8\\MSSQLSERVERSTEP; DATABASE=EFExamDB; UID=sa; PWD=1; TrustServerCertificate=True;";
-            string connectionString = "DATA SOURCE=RomanPC; DATABASE=EFExamDB; UID=sa; PWD=1; TrustServerCertificate=True;";
+            string connectionString = "DATA SOURCE=403-8\\MSSQLSERVERSTEP; DATABASE=EFExamDB; UID=sa; PWD=1; TrustServerCertificate=True;";
+            //string connectionString = "DATA SOURCE=RomanPC; DATABASE=EFExamDB; UID=sa; PWD=1; TrustServerCertificate=True;";
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString);
 
         }
